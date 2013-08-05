@@ -18,13 +18,15 @@ opt: IntMath.cmxa
 IntMath.cmo: IntMath.cmi tables.cmo
 IntMath.cmx: IntMath.cmi tables.cmx
 
-tables.ml:
-	$(OCAML) gen_tables.ml > $@
+.PHONY: tables
+tables: tables.ml
+tables.ml: gen_tables.ml
+	$(OCAML) $< > $@
 
 .SECONDARY:
 
 %.cmi: %.mli
-	$(OCAMLC) -c -o $@ $<
+	$(OCAMLC) -c $<
 
 %.cmo: %.ml %.cmi
 	$(OCAMLC) -c $<

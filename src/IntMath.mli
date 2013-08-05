@@ -22,6 +22,8 @@ val asin : int -> int
 val acos : int -> int
 val atan : int -> int
 
+val sqrt : int -> int
+
 
 module Unsafe : sig
 
@@ -33,6 +35,7 @@ module Unsafe : sig
   val acos : int -> int
   val atan : int -> int
 
+  val sqrt : int -> int
 end
 
 (**/**)
@@ -44,4 +47,6 @@ val unsafe_tan : int -> int
 val unsafe_asin : int -> int
 val unsafe_acos : int -> int
 val unsafe_atan : int -> int
+
+val unsafe_sqrt : int -> int
 

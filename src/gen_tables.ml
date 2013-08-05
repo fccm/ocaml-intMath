@@ -6,7 +6,7 @@ let rad_to_degrees = 180.0 /. pi
 let round x =
   int_of_float (floor (x +. 0.5))
 
-let make_table f =
+let make_trigo_table f =
   Array.init 3600 (fun i ->
     let g = (float_of_int i) *. 0.1 in
     let a = g *. degrees_to_rad in
@@ -14,13 +14,23 @@ let make_table f =
   )
 
 
-let sin_tbl = make_table sin
-let cos_tbl = make_table cos
-let tan_tbl = make_table tan
+let make_sqrt_table () =
+  Array.init 100_000 (fun i ->
+    let g = (float_of_int i) in
+    let r = sqrt g in
+    round r
+  )
 
-let asin_tbl = make_table asin
-let acos_tbl = make_table acos
-let atan_tbl = make_table atan
+
+let sin_tbl = make_trigo_table sin
+let cos_tbl = make_trigo_table cos
+let tan_tbl = make_trigo_table tan
+
+let asin_tbl = make_trigo_table asin
+let acos_tbl = make_trigo_table acos
+let atan_tbl = make_trigo_table atan
+
+let sqrt_tbl = make_sqrt_table ()
 
 
 let print_table tbl =
@@ -41,5 +51,7 @@ let () =
   print_string "let asin_tbl = ";  print_table asin_tbl;
   print_string "let acos_tbl = ";  print_table acos_tbl;
   print_string "let atan_tbl = ";  print_table atan_tbl;
+
+  print_string "let sqrt_tbl = ";  print_table sqrt_tbl;
 ;;
 

@@ -28,6 +28,9 @@ let unsafe_acos a =
 let unsafe_atan a =
   Array.unsafe_get atan_tbl a
 
+let unsafe_sqrt a =
+  Array.unsafe_get sqrt_tbl a
+
 
 module Unsafe = struct
 
@@ -38,6 +41,8 @@ let tan = unsafe_tan
 let asin = unsafe_asin
 let acos = unsafe_acos
 let atan = unsafe_atan
+
+let sqrt = unsafe_sqrt
 
 end
 
@@ -57,4 +62,11 @@ let tan a = unsafe_tan (safe a)
 let asin a = unsafe_asin (safe a)
 let acos a = unsafe_acos (safe a)
 let atan a = unsafe_atan (safe a)
+
+
+let sqrt_len = Array.length sqrt_tbl
+
+let sqrt x =
+  if x < 0 || x >= sqrt_len then invalid_arg "sqrt" else
+  unsafe_sqrt x
 
