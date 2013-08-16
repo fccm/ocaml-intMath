@@ -1,3 +1,12 @@
+(* Copyright (C) 2013 Florent Monnier
+ 
+ This software is provided "AS-IS", without any express or implied warranty.
+ In no event will the authors be held liable for any damages arising from
+ the use of this software.
+ 
+ Permission is granted to anyone to use this software for any purpose,
+ including commercial applications, and to alter it and redistribute it freely.
+*)
 
 let pi = 3.14159_26535_89793_23846_26433_83279_50288
 let degrees_to_rad = pi /. 180.0
@@ -6,11 +15,20 @@ let rad_to_degrees = 180.0 /. pi
 let round x =
   int_of_float (floor (x +. 0.5))
 
+
 let make_trigo_table f =
   Array.init 3600 (fun i ->
     let g = (float_of_int i) *. 0.1 in
     let a = g *. degrees_to_rad in
     round (1000.0 *. (f a))
+  )
+
+
+let make_arc_trigo_table f =
+  Array.init 1001 (fun i ->
+    let v = (float_of_int i) *. 0.001 in
+    let a = (f v) *. rad_to_degrees in
+    round (10.0 *. a)
   )
 
 
@@ -26,9 +44,9 @@ let sin_tbl = make_trigo_table sin
 let cos_tbl = make_trigo_table cos
 let tan_tbl = make_trigo_table tan
 
-let asin_tbl = make_trigo_table asin
-let acos_tbl = make_trigo_table acos
-let atan_tbl = make_trigo_table atan
+let asin_tbl = make_arc_trigo_table asin
+let acos_tbl = make_arc_trigo_table acos
+let atan_tbl = make_arc_trigo_table atan
 
 let sqrt_tbl = make_sqrt_table ()
 

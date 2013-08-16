@@ -59,9 +59,13 @@ let sin a = unsafe_sin (safe a)
 let cos a = unsafe_cos (safe a)
 let tan a = unsafe_tan (safe a)
 
-let asin a = unsafe_asin (safe a)
-let acos a = unsafe_acos (safe a)
-let atan a = unsafe_atan (safe a)
+
+let asafe fn x =
+  if x < 0 || x > 1000 then invalid_arg fn else x
+
+let asin a = unsafe_asin (asafe "asin" a)
+let acos a = unsafe_acos (asafe "acos" a)
+let atan a = unsafe_atan (asafe "atan" a)
 
 
 let sqrt_len = Array.length sqrt_tbl
