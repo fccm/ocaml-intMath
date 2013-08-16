@@ -12,15 +12,25 @@
     the goal is to get deterministic results. *)
 
 (** The angles are not in degrees in the interval (0 .. 360),
-    but in tenth of degrees in the interval (0 .. 3600). *)
+    but in tenth of degrees in the interval (0 .. 3600).
+
+    The coordinates are not in the interval (0.0 .. 1.0)
+    but in the interval (0 .. 1000).
+*)
+
+(** {4 Trigonometric Functions} *)
 
 val sin : int -> int
 val cos : int -> int
 val tan : int -> int
 
+(** {4 Inverse Trigonometric Functions} *)
+
 val asin : int -> int
 val acos : int -> int
 val atan : int -> int
+
+(** {4 Misc Functions} *)
 
 val sqrt : int -> int
 
