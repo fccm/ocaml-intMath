@@ -70,7 +70,11 @@ let atan a = unsafe_atan (asafe "atan" a)
 
 let sqrt_len = Array.length sqrt_tbl
 
-let sqrt x =
-  if x < 0 || x >= sqrt_len then invalid_arg "sqrt" else
+let rec _sqrt x =
+  if x >= sqrt_len then 2 * (_sqrt (x / 4)) else
   unsafe_sqrt x
+
+let sqrt x =
+  if x < 0 then invalid_arg "sqrt"
+  else _sqrt x
 
