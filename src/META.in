@@ -1,9 +1,9 @@
 description = "Trigo math with ints"
 version = "@VERSION@"
 
-exists_if = "IntMath.cma"
-archive(byte) = "IntMath.cma"
-archive(native) = "IntMath.cmxa"
-archive(byte,plugin) = "IntMath.cma"
-archive(native,plugin) = "IntMath.cmxs"
+exists_if = "intMath.cma"
+archive(byte) = "intMath.cma"
+archive(native) = "intMath.cmxa"
+archive(byte,plugin) = "intMath.cma"
+archive(native,plugin) = "intMath.cmxs"
 

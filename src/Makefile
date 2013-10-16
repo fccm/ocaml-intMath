@@ -12,11 +12,11 @@ MKDIR := mkdir -p
 
 .PHONY: all lib opt
 all: lib opt
-lib: IntMath.cma
-opt: IntMath.cmxa
+lib: intMath.cma
+opt: intMath.cmxa
 
-IntMath.cmo: IntMath.cmi tables.cmo
-IntMath.cmx: IntMath.cmi tables.cmx
+intMath.cmo: intMath.cmi tables.cmo
+intMath.cmx: intMath.cmi tables.cmx
 
 .PHONY: tables
 tables: tables.ml
@@ -38,34 +38,34 @@ tables.ml: gen_tables.ml
 %.cmx: %.ml
 	$(OCAMLOPT) -c $<
 
-IntMath.cma: tables.cmo IntMath.cmo
+intMath.cma: tables.cmo intMath.cmo
 	$(OCAMLC) -a -o $@ $^
 
-IntMath.cmxa: tables.cmx IntMath.cmx
+intMath.cmxa: tables.cmx intMath.cmx
 	$(OCAMLOPT) -a -o $@ $^
 
-IntMath.cmxs: IntMath.cmxa
+intMath.cmxs: intMath.cmxa
 	$(OCAMLOPT) -shared -linkall -o $@ $<
 
 META: META.in
 	sed -e 's/@VERSION@/$(VERSION)/g' $< > $@
 
 .PHONY: findinstall
-findinstall: META IntMath.cma
-	$(OCAMLFIND) install IntMath META *.cm[iax] *.cmx[as] *.mli *.a
+findinstall: META intMath.cma
+	$(OCAMLFIND) install intMath META *.cm[iax] *.cmx[as] *.mli *.a
 
 .PHONY: finduninstall
 finduninstall:
-	$(OCAMLFIND) remove IntMath
+	$(OCAMLFIND) remove intMath
 
 .PHONY: edit
 edit:
-	$(EDITOR) IntMath.ml IntMath.mli
+	$(EDITOR) intMath.ml intMath.mli
 
 .PHONY: doc
 doc:
 	$(MKDIR) $(DOC_DIR)
-	$(OCAMLDOC) -d $(DOC_DIR) -html IntMath.mli
+	$(OCAMLDOC) -d $(DOC_DIR) -html intMath.mli
 
 .PHONY: cleandoc
 cleandoc:
